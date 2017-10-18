@@ -13,14 +13,12 @@ public class Movie {
     private String release;
     private String image_url;
 
-
-
     public Movie(String title, int rating, String description, String release, String image_url) {
         this.title = title;
         this.rating = rating;
         this.description = description;
         this.release = release;
-        this.image_url = image_url;
+        this.image_url = getImagePath(image_url);
     }
 
     public String getTitle() {
@@ -43,5 +41,9 @@ public class Movie {
 
     public String getImage_url() {
         return image_url;
+    }
+
+    public String getImagePath(String url) {
+        return "http://image.tmdb.org/t/p/w185/" + url;
     }
 }

@@ -22,7 +22,7 @@ import okhttp3.Response;
  */
 
 public class MovieService {
-    public static void findMovies(String title, Callback callback) {
+    public static void findMovies( Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
 
