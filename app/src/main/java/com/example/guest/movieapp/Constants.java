@@ -14,5 +14,6 @@ public class Constants {
     public static final String MOVIE_QUERY_PARAMETER = "query";
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/search/movie";
     public static final String MOVIE_POPULARITY_BASE_URL = "https://api.themoviedb.org/3/movie/popular";
-    public static final String MOVIE_TITLE_QUERY_PARAMETER = "query";
+    public static final String MOVIE_TRAILER_BASE_PATH = "https://api.themoviedb.org/3/movie";
+
 }

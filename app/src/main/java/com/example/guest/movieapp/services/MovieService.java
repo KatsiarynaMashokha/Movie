@@ -61,6 +61,9 @@ public class MovieService {
 
     }
 
+    // Create a request to play the trailer
+    //public static void findTrailer(Callback callback)
+
     public ArrayList<Movie> processResults(Response response) {
         ArrayList<Movie> movies = new ArrayList<>();
 
@@ -69,13 +72,14 @@ public class MovieService {
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONArray resultsArray = jsonObject.getJSONArray("results");
             for(int i=0; i < resultsArray.length(); i++){
+                long id = resultsArray.getJSONObject(i).getInt("id");
                 String title = resultsArray.getJSONObject(i).getString("title");
                 int rating = resultsArray.getJSONObject(i).getInt("vote_average");
                 String description = resultsArray.getJSONObject(i).getString("overview");
                 String image = resultsArray.getJSONObject(i).getString("poster_path");
                 String release = resultsArray.getJSONObject(i).getString("release_date");
 
-                Movie movie = new Movie(title, rating, description, release, image);
+                Movie movie = new Movie(id, title, rating, description, release, image);
                 movies.add(movie);
 
             }

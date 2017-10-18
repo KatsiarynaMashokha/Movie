@@ -4,10 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.guest.movieapp.adapters.MovieListAdapter;
 import com.example.guest.movieapp.models.Movie;
@@ -35,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         getMovies();
+
 
         mFindMoviesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     private void getMovies() {
 
@@ -97,4 +99,6 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
     }
+
+
 }

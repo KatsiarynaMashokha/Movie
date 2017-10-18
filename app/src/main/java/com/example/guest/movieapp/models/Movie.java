@@ -7,18 +7,24 @@ import java.util.ArrayList;
  */
 
 public class Movie {
+    private long id;
     private String title;
     private int rating;
     private String description;
     private String release;
     private String image_url;
 
-    public Movie(String title, int rating, String description, String release, String image_url) {
+    public Movie(long id, String title, int rating, String description, String release, String image_url) {
+        this.id = id;
         this.title = title;
         this.rating = rating;
         this.description = description;
         this.release = release;
         this.image_url = getImagePath(image_url);
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {

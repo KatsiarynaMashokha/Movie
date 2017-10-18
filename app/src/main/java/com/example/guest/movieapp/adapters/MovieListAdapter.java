@@ -47,6 +47,7 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         return mMovies.size();
     }
 
+
     public class MovieViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.movieImageView) ImageView mMovieImageView;
         @Bind(R.id.movieTitleTextView) TextView mTitleTextView;
