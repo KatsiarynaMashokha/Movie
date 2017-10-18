@@ -41,6 +41,26 @@ public class MovieService {
         call.enqueue(callback);
     }
 
+    // Find a specific movie
+    public static void findUserMovie(String title, Callback callback) {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .build();
+
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.MOVIE_BASE_URL).newBuilder();
+            urlBuilder.addQueryParameter(Constants.MOVIE_QUERY_PARAMETER, title)
+                    .addQueryParameter(Constants.MOVIE_KEY_QUERY_PARAMETER, Constants.MOVIE_KEY);
+
+            String url = urlBuilder.build().toString();
+
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+
+            Call call = client.newCall(request);
+            call.enqueue(callback);
+
+    }
+
     public ArrayList<Movie> processResults(Response response) {
         ArrayList<Movie> movies = new ArrayList<>();
 

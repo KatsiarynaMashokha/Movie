@@ -11,6 +11,7 @@ public class Constants {
     public static final String MOVIE_LANGUAGE_PARAMETER = "en";
     public static final String MOVIE_PAGE_QUERY_PARAMETER = "page";
     public static final String MOVIE_PAGE_PARAMETER = "1";
+    public static final String MOVIE_QUERY_PARAMETER = "query";
     public static final String MOVIE_BASE_URL = "https://api.themoviedb.org/3/search/movie";
     public static final String MOVIE_POPULARITY_BASE_URL = "https://api.themoviedb.org/3/movie/popular";
     public static final String MOVIE_TITLE_QUERY_PARAMETER = "query";

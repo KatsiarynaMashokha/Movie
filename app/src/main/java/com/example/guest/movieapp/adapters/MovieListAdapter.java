@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.guest.movieapp.R;
 import com.example.guest.movieapp.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -63,10 +64,9 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         public void bindMovie(Movie movie) {
             mTitleTextView.setText(movie.getTitle());
             mReleaseTextView.setText(movie.getRelease());
-            mRatingTextView.setText("Rating: " + movie.getRating() + "/5");
+            mRatingTextView.setText("Rating: " + movie.getRating() + "/10");
             mDescriptionTextView.setText(movie.getDescription());
             Picasso.with(mContext).load(movie.getImage_url()).into(mMovieImageView);
         }
     }
-
 }

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Bind(R.id.findMoviesButton) Button mFindMoviesButton;
     public String movieTitle;
     public ArrayList<Movie> mMovies = new ArrayList<>();
-    private MovieListAdapter mAdapter;
+    final MovieService movieService = new MovieService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +43,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 movieTitle = mTitleEditText.getText().toString();
                 mTitleEditText.getText().clear();
+                movieService.findUserMovie(movieTitle, new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        mMovies = movieService.processResults(response);
+                        MainActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                displayMovies();
+                            }
+                        });
+                    }
+
+                });
             }
         });
-
     }
 
+
     private void getMovies() {
-        final MovieService movieService = new MovieService();
+
 
         movieService.findMovies(new Callback() {
             @Override
@@ -64,15 +82,19 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new MovieListAdapter(getApplicationContext(), mMovies);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(MainActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
+                        displayMovies();
                     }
                 });
             }
         });
+    }
+
+    private void displayMovies() {
+        MovieListAdapter mAdapter = new MovieListAdapter(getApplicationContext(), mMovies);
+        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager =
+                new LinearLayoutManager(MainActivity.this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
     }
 }
